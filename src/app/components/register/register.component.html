@@ -1,0 +1,54 @@
+<div class="login-form-wrapper container container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Register</h2>
+      <form formGroup="loginForm" class="login-form">
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="col-md-12">
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="firstName" autocomplete="off">
+          </mat-form-field>
+
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="col-md-12">
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="lastName" autocomplete="off">
+          </mat-form-field>
+
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="col-md-12">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="email" autocomplete="off">
+          </mat-form-field>
+
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="col-md-12">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput placeholder="Placeholder" formControlName="password">
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="col-md-12">
+            <mat-label>Repeat Password</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="repeatPassword" autocomplete="off">
+          </mat-form-field>
+
+        </div>
+        <div class="form-group p-3">
+          <button [disabled]="loading" class="btn btn-link" (click)="onSubmit($event)">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Register
+          </button>
+          <button [disabled]="loading" class="btn btn-link">
+            <a routerLink="/login" routerLinkActive="">Login</a>
+          </button>
+          <!-- <a routerLink="/" routerLinkActive="" (click)="onSubmit($event)">Login</a>
+          <a routerLink="/register" routerLinkActive="">Register</a> -->
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
