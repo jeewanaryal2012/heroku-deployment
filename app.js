@@ -7,7 +7,7 @@ var express_1 = __importDefault(require("express"));
 
 require("dotenv").config();
 
-let Users = require("./data/users");
+//let Users = require("./data/users");
 
 const app = express();
 
