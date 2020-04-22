@@ -13,11 +13,11 @@ require("dotenv").config();
 const app = express();
 
 app.use(express.json());
-app.use(express_1.default.static(__dirname + '/dist'));
+app.use(express_1.default.static(__dirname + '/dist/cvd-cleaners'));
 app.get("/home", (req, res) => {
   console.log("running ...", req);
   //res.json({ status: "success", message: "Welcome to Node API!!!" });
-  res.sendFile(path.join(__dirname + '/dist/index.html'));
+  res.sendFile(path.join(__dirname + '/dist/cvd-cleaners/index.html'));
   //res.sendFile('./dist/payment-project/index.html');
 });
 
