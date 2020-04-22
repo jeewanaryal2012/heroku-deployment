@@ -8,6 +8,10 @@ const routes: Routes = [
     path: '', loadChildren: () => import('./components/home/home.module').then(m => m.HomeModule),
     canActivate: [AuthGuardService]
   },
+  {
+    path: 'home', loadChildren: () => import('./components/home/home.module').then(m => m.HomeModule),
+    canActivate: [AuthGuardService]
+  },
   { path: 'login', loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./components/register/register.module').then(m => m.RegisterModule) },
   { path: 'home', loadChildren: () => import('./components/home/home-routing.module').then(m => m.HomeRoutingModule) },
