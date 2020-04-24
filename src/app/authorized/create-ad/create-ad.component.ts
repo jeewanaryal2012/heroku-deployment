@@ -10,49 +10,67 @@ const URL = 'http://localhost:8080/api/upload';
   styleUrls: ['./create-ad.component.scss']
 })
 export class CreateAdComponent implements OnInit {
-  loginForm: FormGroup;
+  createAdForm: FormGroup;
   uploader: FileUploader;
   hasBaseDropZoneOver: boolean;
   hasAnotherDropZoneOver: boolean;
   response: string;
+  createAdFormData = {
+    headLine: '',
+    description: ''
+  };
 
-  public uploader2: FileUploader = new FileUploader({
-    url: URL,
-    itemAlias: 'image'
-  });
+
 
   constructor(private formBuilder: FormBuilder) {
-    this.initUpload();
-    this.uploader.onSuccessItem = (item: FileItem, response: string, status: number,
-      headers: ParsedResponseHeaders) => {
-      console.log("onSuccessItem " + status, response, item);
-      if (response) { //parse your response.
-      }
-    }
+    this.uploader = new FileUploader({
+      url: URL,
+      itemAlias: 'image'
+    });
+    this.createAdForm = this.formBuilder.group({
+      headLine: ['', Validators.required],
+      description: ['', Validators.required]
+    });
   }
 
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      headline: ['', Validators.required],
-      description: ['', Validators.required]
-    });
+    this.initUpload();
+  }
+  onFileSelected(e) {
+    console.log(this.uploader.queue);
+  }
 
-    this.uploader2.onAfterAddingFile = (file) => {
+  initUpload() {
+    console.log(JSON.parse(localStorage.getItem('currentUser')).firstName);
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+
+
+    this.uploader.onAfterAddingFile = (file) => {
+      //console.log(file);
       file.withCredentials = false;
     };
-    this.uploader2.onCompleteItem = (item: any, status: any) => {
+    this.uploader.onCompleteItem = (item: any, status: any) => {
       console.log('Uploaded File Details:', item);
       //this.toastr.success('File successfully uploaded!');
     };
 
-    let optns = this.uploader2.options;
-    optns = {
-      ...optns,
-      additionalParameter: { paramName: 'test value' }
-    };
-    this.uploader2.setOptions(optns);
+    let optns = this.uploader.options;
+    this.createAdForm.valueChanges.subscribe(res => {
+      optns = {
+        ...optns,
+        additionalParameter: {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          userName: user.userName,
+          headLine: res.headLine,
+          description: res.description
+        }
+      };
+      this.uploader.setOptions(optns);
+    });
   }
 
+  /*
   initUpload() {
     this.uploader = new FileUploader({
       url: URL,
@@ -94,5 +112,6 @@ export class CreateAdComponent implements OnInit {
   onFileSelected(e) {
     console.log(this.uploader.queue);
   }
+  */
 
 }
