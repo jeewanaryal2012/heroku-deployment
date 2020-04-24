@@ -44,6 +44,13 @@ export class CreateAdComponent implements OnInit {
       console.log('Uploaded File Details:', item);
       //this.toastr.success('File successfully uploaded!');
     };
+
+    let optns = this.uploader2.options;
+    optns = {
+      ...optns,
+      additionalParameter: { paramName: 'test value' }
+    };
+    this.uploader2.setOptions(optns);
   }
 
   initUpload() {
