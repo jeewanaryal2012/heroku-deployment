@@ -6,6 +6,10 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { CreateAdComponent } from '../../authorized/create-ad/create-ad.component';
 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormGroup, FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -15,7 +19,12 @@ import { CreateAdComponent } from '../../authorized/create-ad/create-ad.componen
   imports: [
     CommonModule,
     HomeRoutingModule,
-    UniversalModule
+    UniversalModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FileUploadModule
   ]
 })
 export class HomeModule { }
