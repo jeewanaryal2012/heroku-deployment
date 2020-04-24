@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FileUploader, FileItem, ParsedResponseHeaders } from 'ng2-file-upload';
 
-const URL = 'http://localhost:3000/upload';
+const URL = 'http://localhost:8080/api/upload';
 
 @Component({
   selector: 'app-create-ad',
@@ -15,6 +15,11 @@ export class CreateAdComponent implements OnInit {
   hasBaseDropZoneOver: boolean;
   hasAnotherDropZoneOver: boolean;
   response: string;
+
+  public uploader2: FileUploader = new FileUploader({
+    url: URL,
+    itemAlias: 'image'
+  });
 
   constructor(private formBuilder: FormBuilder) {
     this.initUpload();
@@ -31,6 +36,14 @@ export class CreateAdComponent implements OnInit {
       headline: ['', Validators.required],
       description: ['', Validators.required]
     });
+
+    this.uploader2.onAfterAddingFile = (file) => {
+      file.withCredentials = false;
+    };
+    this.uploader2.onCompleteItem = (item: any, status: any) => {
+      console.log('Uploaded File Details:', item);
+      //this.toastr.success('File successfully uploaded!');
+    };
   }
 
   initUpload() {

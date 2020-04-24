@@ -29,3 +29,11 @@
         </div>
     </div>
 </div>
+
+<div class="file-upload">
+    <input type="file" name="image" ng2FileSelect [uploader]="uploader2" multiple
+        accept="image/x-png,image/gif,image/jpeg" />
+    <button type="button" (click)="uploader2.uploadAll()" [disabled]="!uploader2.getNotUploadedItems().length">
+        Upload
+    </button>
+</div>
