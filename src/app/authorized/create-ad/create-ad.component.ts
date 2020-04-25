@@ -122,12 +122,21 @@ export class CreateAdComponent implements OnInit {
   //   });
   // }
 
-  img: any;
+
+  imageBlobUrl: any;
   download(e) {
     this.fileService.download('test.png').subscribe(res => {
-      console.log(res);
-      this.img = res;
-      saveAs(res, 'testfile');
+      //console.log(res);
+      //this.img = res;
+      //saveAs(res, 'testfile');
+      let reader = new FileReader();
+      reader.addEventListener("load", () => {
+        this.imageBlobUrl = reader.result;
+      }, false);
+      if (res) {
+        reader.readAsDataURL(res);
+      }
+
     }, err => {
       console.log('err');
     });

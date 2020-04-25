@@ -50,12 +50,14 @@
         </div>
 
         <div class="col-md-8">
-            Preview my AD
             <div>
-                --- <img [src]="img?.type" /> ---
+                <button class="btn btn-primary" (click)="download($event)">Preview</button>
             </div>
             <div>
-                <button class="btn btn-primary" (click)="download($event)">Download</button>
+                <label>Preview my AD</label>
+                <div>
+                    <img [src]="imageBlobUrl">
+                </div>
             </div>
         </div>
     </div>
