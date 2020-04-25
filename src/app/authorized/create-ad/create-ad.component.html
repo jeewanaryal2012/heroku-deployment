@@ -48,5 +48,15 @@
                 </div> -->
             </form>
         </div>
+
+        <div class="col-md-8">
+            Preview my AD
+            <div>
+                --- <img [src]="img?.type" /> ---
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="download($event)">Download</button>
+            </div>
+        </div>
     </div>
 </div>

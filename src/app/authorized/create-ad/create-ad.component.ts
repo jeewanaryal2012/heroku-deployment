@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FileUploader, FileItem, ParsedResponseHeaders } from 'ng2-file-upload';
+import { FileService } from '../../_services/file.service';
+import { saveAs } from 'file-saver';
 
 const URL = 'http://localhost:8080/api/upload';
 
@@ -22,7 +24,7 @@ export class CreateAdComponent implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private fileService: FileService) {
     this.uploader = new FileUploader({
       url: URL,
       itemAlias: 'image'
@@ -113,5 +115,23 @@ export class CreateAdComponent implements OnInit {
     console.log(this.uploader.queue);
   }
   */
+
+  // download(e) {
+  //   this.fileService.download('').subscribe(res => {
+  //     console.log(res);
+  //   });
+  // }
+
+  img: any;
+  download(e) {
+    this.fileService.download('test.png').subscribe(res => {
+      console.log(res);
+      this.img = res;
+      saveAs(res, 'testfile');
+    }, err => {
+      console.log('err');
+    });
+  }
+
 
 }
