@@ -10,11 +10,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormGroup, FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    CreateAdComponent
+    CreateAdComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,

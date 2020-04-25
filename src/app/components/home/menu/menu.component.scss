@@ -1,0 +1,13 @@
+@import "../../../../styles/constant.scss";
+
+.nav-wrapper {
+  .navbar {
+    background-color: $navBackground;
+    a {
+      color: $textWhite;
+    }
+    a.active {
+      color: green;
+    }
+  }
+}
