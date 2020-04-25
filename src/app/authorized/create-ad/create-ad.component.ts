@@ -54,6 +54,7 @@ export class CreateAdComponent implements OnInit {
     this.uploader.onCompleteItem = (item: any, status: any) => {
       console.log('Uploaded File Details:', item);
       //this.toastr.success('File successfully uploaded!');
+      this.download('');
     };
 
     let optns = this.uploader.options;
@@ -124,6 +125,7 @@ export class CreateAdComponent implements OnInit {
 
 
   imageBlobUrl: any;
+  showMyAd = false;
   download(e) {
     this.fileService.download('test.png').subscribe(res => {
       //console.log(res);
@@ -132,6 +134,7 @@ export class CreateAdComponent implements OnInit {
       let reader = new FileReader();
       reader.addEventListener("load", () => {
         this.imageBlobUrl = reader.result;
+        this.showMyAd = true;
       }, false);
       if (res) {
         reader.readAsDataURL(res);

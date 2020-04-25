@@ -55,7 +55,7 @@
             </div>
             <div>
                 <label>Preview my AD</label>
-                <div>
+                <div *ngIf="showMyAd === true">
                     <img [src]="imageBlobUrl">
                 </div>
             </div>
