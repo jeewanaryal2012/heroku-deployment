@@ -1,7 +1,7 @@
 <div class="login-form-wrapper container container-fluid">
     <div class="row">
         <div class="col-md-4">
-            <h2>Create Your Advertisement</h2>
+            <h2>Create Your Advertisement <i class="fas fa-address-card"></i></h2>
             <form [formGroup]="createAdForm" class="login-form">
                 <div class="form-group m-0">
                     <mat-form-field appearance="outline" class="col-md-12">
@@ -21,15 +21,21 @@
 
                 <div class="form-group m-0">
                     <div class="form-group m-0">
-                        <div class="progress m-3">
+                        <div class="progress m-3" *ngIf="uploader.getNotUploadedItems().length">
                             <div class="progress-bar" role="progressbar"
                                 [ngStyle]="{ 'width': uploader.progress + '%' }">{{uploader.progress}}%</div>
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <input type="file" name="image" ng2FileSelect [uploader]="uploader"
+                        <div class="upload-btn-wrapper">
+                            <button class="btn-upload"> <i class="fas fa-paperclip"></i> Attach file</button>
+                            <input type="file" name="image" ng2FileSelect [uploader]="uploader"
+                                (onFileSelected)="onFileSelected($event)" multiple
+                                accept="image/x-png,image/gif,image/jpeg" />
+                        </div>
+                        <!-- <input type="file" name="image" ng2FileSelect [uploader]="uploader"
                             (onFileSelected)="onFileSelected($event)" multiple
-                            accept="image/x-png,image/gif,image/jpeg" />
+                            accept="image/x-png,image/gif,image/jpeg" /> <i class="fas fa-paperclip"></i> -->
                         <button type="button" class="btn btn-primary col-md-12 mt-3" (click)="uploader.uploadAll()"
                             [disabled]="!uploader.getNotUploadedItems().length">
                             Upload
