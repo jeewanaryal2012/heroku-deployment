@@ -44,8 +44,8 @@ export class CreateAdComponent implements OnInit {
   }
 
   initUpload() {
-    console.log(JSON.parse(localStorage.getItem('currentUser')).firstName);
-    const user = JSON.parse(localStorage.getItem('currentUser'));
+    // console.log(JSON.parse(localStorage.getItem('currentUser')).firstName);
+    // const user = JSON.parse(localStorage.getItem('currentUser'));
 
 
     this.uploader.onAfterAddingFile = (file) => {
@@ -63,11 +63,11 @@ export class CreateAdComponent implements OnInit {
       optns = {
         ...optns,
         additionalParameter: {
-          firstName: user.firstName,
-          lastName: user.lastName,
-          userName: user.userName,
-          headLine: res.headLine,
-          description: res.description
+          // firstName: user.firstName,
+          // lastName: user.lastName,
+          // userName: user.userName,
+          // headLine: res.headLine,
+          // description: res.description
         }
       };
       this.uploader.setOptions(optns);
