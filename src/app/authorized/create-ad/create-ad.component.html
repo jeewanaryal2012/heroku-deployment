@@ -1,4 +1,4 @@
-<div class="login-form-wrapper container container-fluid">
+<div class="ad-form-wrapper container container-fluid">
     <div class="row">
         <div class="col-md-8">
             <div>
@@ -7,7 +7,10 @@
             </div>
             <div>
                 <label>Preview my AD</label>
-                <div *ngIf="showMyAd === true">
+                <div class="ad-image" *ngIf="showMyAd === false">
+                    Image loading ...
+                </div>
+                <div class="ad-image" *ngIf="showMyAd === true">
                     <img [src]="imageBlobUrl">
                 </div>
             </div>
