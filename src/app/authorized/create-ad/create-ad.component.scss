@@ -4,6 +4,16 @@
     width: 40%;
     height: 200px;
   }
+  .box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .box div {
+    // width: 100px;
+    // height: 100px;
+  }
 }
 
 .upload-btn-wrapper {

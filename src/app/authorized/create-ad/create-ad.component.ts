@@ -127,15 +127,20 @@ export class CreateAdComponent implements OnInit {
 
   imageBlobUrl: any;
   showMyAd = false;
+  loading = false;
   download(e) {
+    this.loading = true;
     this.fileService.download('test.png').subscribe(res => {
       //console.log(res);
       //this.img = res;
       //saveAs(res, 'testfile');
       let reader = new FileReader();
       reader.addEventListener("load", () => {
-        this.imageBlobUrl = reader.result;
-        this.showMyAd = true;
+        setTimeout(() => {
+          this.imageBlobUrl = reader.result;
+          this.showMyAd = true;
+          this.loading = false;
+        }, 2000);
       }, false);
       if (res) {
         reader.readAsDataURL(res);

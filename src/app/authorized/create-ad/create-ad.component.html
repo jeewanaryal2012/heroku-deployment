@@ -1,21 +1,21 @@
 <div class="ad-form-wrapper container container-fluid">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div>
-                <button class="btn btn-link" (click)="download($event)">Preview</button>
-                <button class="btn btn-link" (click)="showMyAd = false">Hide</button>
+                <button class="btn btn-link" [disabled]="loading === true" (click)="download($event)">Preview</button>
+                <!-- <button class="btn btn-link" (click)="showMyAd = false">Hide</button> -->
             </div>
             <div>
                 <label>Preview my AD</label>
-                <div class="ad-image" *ngIf="showMyAd === false">
-                    Image loading ...
+                <div class="ad-image box" *ngIf="loading === true">
+                    <i class="fas fa-spinner fa-spin"></i>
                 </div>
-                <div class="ad-image" *ngIf="showMyAd === true">
+                <div class="ad-image" *ngIf="loading === false">
                     <img [src]="imageBlobUrl">
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <h2>Create Your Advertisement <i class="fas fa-address-card"></i></h2>
             <form [formGroup]="createAdForm" class="login-form">
                 <div class="form-group m-0">
