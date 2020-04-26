@@ -20,7 +20,7 @@ export class FileService {
     //return this.http.get<Blob>('http://localhost:8080/download')
     const body = { filename: 'arrow.png' };
 
-    return this.http.post('http://localhost:8080/download', body, {
+    return this.http.post('http://localhost:4040/downloads', body, {
       responseType: 'blob',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });

@@ -4,7 +4,8 @@ import { FileUploader, FileItem, ParsedResponseHeaders } from 'ng2-file-upload';
 import { FileService } from '../../_services/file.service';
 import { saveAs } from 'file-saver';
 
-const URL = 'http://localhost:8080/api/upload';
+//const URL = 'http://localhost:8080/api/upload';
+const URL = 'http://localhost:4040/uploads';
 
 @Component({
   selector: 'app-create-ad',

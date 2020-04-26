@@ -1,5 +1,17 @@
 <div class="login-form-wrapper container container-fluid">
     <div class="row">
+        <div class="col-md-8">
+            <div>
+                <button class="btn btn-link" (click)="download($event)">Preview</button>
+                <button class="btn btn-link" (click)="showMyAd = false">Hide</button>
+            </div>
+            <div>
+                <label>Preview my AD</label>
+                <div *ngIf="showMyAd === true">
+                    <img [src]="imageBlobUrl">
+                </div>
+            </div>
+        </div>
         <div class="col-md-4">
             <h2>Create Your Advertisement <i class="fas fa-address-card"></i></h2>
             <form [formGroup]="createAdForm" class="login-form">
@@ -55,17 +67,6 @@
             </form>
         </div>
 
-        <div class="col-md-8">
-            <div>
-                <button class="btn btn-link" (click)="download($event)">Preview</button>
-                <button class="btn btn-link" (click)="showMyAd = false">Hide</button>
-            </div>
-            <div>
-                <label>Preview my AD</label>
-                <div *ngIf="showMyAd === true">
-                    <img [src]="imageBlobUrl">
-                </div>
-            </div>
-        </div>
+
     </div>
 </div>
