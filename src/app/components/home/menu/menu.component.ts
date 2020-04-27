@@ -8,10 +8,22 @@ import { AuthenticationService } from '../../../_services/authentication.service
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+  user: IUser = {
+    firstName: '',
+    lastName: '',
+    userName: '',
+    email: ''
+  };
   loggingOut = false;
   constructor(private route: ActivatedRoute, private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
+    console.log(this.authenticationService.currentUserValue);
+    this.user.userName = this.authenticationService.currentUserValue.userName;
+  }
+
+  userClicked(e) {
+    e.preventDefault();
   }
 
   logout(e) {
@@ -22,4 +34,11 @@ export class MenuComponent implements OnInit {
       this.loggingOut = false;
     }, 2000);
   }
+}
+
+export interface IUser {
+  firstName: string;
+  lastName: string;
+  userName: string;
+  email: string;
 }
