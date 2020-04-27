@@ -44,4 +44,28 @@ export class AuthenticationService {
     localStorage.removeItem('jwt');
     this.currentUserSubject.next(null);
   }
+
+  register() {
+    const users = {
+      "firstName": "Sam",
+      "lastName": "Tik",
+      "email": 'emaail',
+      "phone": "999-000-2222",
+      "password": "passsam"
+    };
+    return this.http.post<any>(`http://localhost:4040/register`, users);
+    // .pipe(map(user => {
+    //   // login successful if there's a jwt token in the response
+    //   console.log(user);
+    //   // if (user && user.accessToken) {
+    //   //   // store user details and jwt token in local storage to keep user logged in between page refreshes
+    //   //   // localStorage.setItem('currentUser', JSON.stringify(user));
+    //   //   // this.currentUserSubject.next(user);
+    //   //   localStorage.setItem('jwt', JSON.stringify(user));
+    //   //   this.currentUserSubject.next(user);
+    //   // }
+
+    //   //return user;
+    // }));
+  }
 }
