@@ -11,12 +11,14 @@ import { MatInputModule } from '@angular/material/input';
 import { FormGroup, FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
 import { MenuComponent } from './menu/menu.component';
+import { OverlayComponent } from './overlay/overlay.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     CreateAdComponent,
-    MenuComponent
+    MenuComponent,
+    OverlayComponent
   ],
   imports: [
     CommonModule,

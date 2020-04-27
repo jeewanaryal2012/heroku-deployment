@@ -8,14 +8,18 @@ import { AuthenticationService } from '../../../_services/authentication.service
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-
+  loggingOut = false;
   constructor(private route: ActivatedRoute, private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
 
   logout(e) {
+    this.loggingOut = true;
     this.authenticationService.logout();
-    this.router.navigate(['/login']);
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+      this.loggingOut = false;
+    }, 2000);
   }
 }
