@@ -9,16 +9,16 @@ import { User } from '../_models/user';
 })
 export class AuthenticationService {
 
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+  private currentUserSubject: BehaviorSubject<any>;
+  public currentUser: Observable<any>;
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('jwt')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(): User {
-    console.log(this.currentUserSubject);
+  public get currentUserValue() {
+    console.log(this.currentUserSubject.value);
     return this.currentUserSubject.value;
   }
 
