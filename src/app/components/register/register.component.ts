@@ -52,6 +52,9 @@ export class RegisterComponent implements OnInit {
     console.log(this.f);
     this.registerService.register('register', this.registerForm.value).subscribe(res => {
       console.log(res);
+      if (res.registered === true) {
+        this.router.navigate(['/login']);
+      }
     }, err => { });
   }
 
