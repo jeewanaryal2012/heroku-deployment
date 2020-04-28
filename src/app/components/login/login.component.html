@@ -4,9 +4,12 @@
       <h2>Login</h2>
       <form [formGroup]="loginForm" class="login-form">
         <div class="form-group">
+          <div class="col-md-12">
+            <label *ngIf="loginSuccess === false" class="text-danger">Login unsuccessful</label>
+          </div>
           <mat-form-field appearance="outline" class="col-md-12">
             <mat-label>User Name</mat-label>
-            <input matInput placeholder="Placeholder" formControlName="userName" autocomplete="off">
+            <input matInput placeholder="Placeholder" formControlName="email" autocomplete="off">
           </mat-form-field>
 
         </div>
