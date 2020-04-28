@@ -15,4 +15,8 @@ export class RegisterService {
     console.log(data);
     return this.http.post<User>(`${Constant.DOMAIN}${url}`, data);
   }
+  userExists(url, email) {
+    return this.http.post(`${Constant.DOMAIN}${url}`, { email });
+    // http://localhost:4040/user-exists
+  }
 }

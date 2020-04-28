@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { first, filter } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 
 import { AuthenticationService } from '../../_services/authentication.service';
 import { RegisterService } from '../../_services/register.service';
@@ -11,11 +13,14 @@ import { RegisterService } from '../../_services/register.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, AfterViewInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;
   returnUrl: string;
+  @ViewChild('input') input: ElementRef;
+  userExists = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -45,6 +50,24 @@ export class RegisterComponent implements OnInit {
     //   console.log(f);
     // }, err => { });
   }
+  ngAfterViewInit() {
+    // server-side search
+    fromEvent(this.input.nativeElement, 'keyup')
+      .pipe(
+        filter(Boolean),
+        debounceTime(100),
+        distinctUntilChanged(),
+        tap((text) => {
+          console.log(this.input.nativeElement.value);
+          this.registerService.userExists('user-exists', this.input.nativeElement.value).subscribe(res => {
+            console.log(res);
+            this.userExists = res['userExists'];
+          }, err => { });
+        })
+      )
+      .subscribe();
+  }
+
   get f() { return this.registerForm.controls; }
 
   onSubmit(e) {
