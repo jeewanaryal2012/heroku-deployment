@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { UniversalModule } from './common/universal/universal.module';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MainInterceptorService } from './_services/main-interceptor.service';
 import { JwtInterceptorService } from './_helpers/jwt-interceptor.service';
 //import { NavComponent } from './common/nav/nav.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -27,6 +28,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
     { provide: LocationStrategy, useClass: HashLocationStrategy }
+    // ,
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: MainInterceptorService,
+    //   multi: true
+    // }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../../_services/authentication.service';
+import { BaseService } from '../../../_services/base.service';
 
 @Component({
   selector: 'app-menu',
@@ -15,7 +16,8 @@ export class MenuComponent implements OnInit {
     email: ''
   };
   loggingOut = false;
-  constructor(private route: ActivatedRoute, private router: Router, private authenticationService: AuthenticationService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private authenticationService: AuthenticationService
+    , private baseService: BaseService) { }
 
   ngOnInit(): void {
     console.log(this.authenticationService.currentUserValue);
@@ -33,6 +35,12 @@ export class MenuComponent implements OnInit {
       this.router.navigate(['/login']);
       this.loggingOut = false;
     }, 2000);
+  }
+
+  test() {
+    this.baseService.get('test').subscribe(res => {
+      console.log(res);
+    }, err => { });
   }
 }
 
