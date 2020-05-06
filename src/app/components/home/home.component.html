@@ -1,5 +1,5 @@
 <app-menu></app-menu>
 <div>
-    <img [src]="user.profilePicture" />
+    <img [src]="user?.profilePicture === '' ? './assets/images/profile.png' : user?.profilePicture" />
 </div>
 <router-outlet></router-outlet>
