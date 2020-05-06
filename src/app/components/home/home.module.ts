@@ -14,13 +14,15 @@ import { MenuComponent } from './menu/menu.component';
 import { OverlayComponent } from './overlay/overlay.component';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     CreateAdComponent,
     MenuComponent,
-    OverlayComponent
+    OverlayComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

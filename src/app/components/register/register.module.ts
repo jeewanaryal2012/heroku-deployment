@@ -5,6 +5,7 @@ import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { FormGroup, FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
@@ -15,7 +16,9 @@ import { FormGroup, FormControl, ReactiveFormsModule, FormsModule } from '@angul
     RegisterRoutingModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule, FormsModule
+    MatSelectModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class RegisterModule { }

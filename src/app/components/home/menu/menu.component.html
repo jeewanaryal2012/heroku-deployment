@@ -15,12 +15,17 @@
                             <a class="nav-link" href="#">Online (2768)</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" [routerLink]="'/ad'">AD</a>
+                            <a class="nav-link" [routerLink]="'/ad'">My Matches</a>
                         </li>
                         <li class="nav-item">
-                            <!-- <a class="nav-link" href="#">My Ad</a> -->
-                            <!-- <a class="nav-link" [routerLink]="'/ad'">AD</a> -->
+                            <a class="nav-link" [routerLink]="'/ad'" (click)="test()">Messages</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" [routerLink]="'/ad'" (click)="test()">Tes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #fbd827;" [routerLink]="'/ad'"
+                                (click)="beMember($event)">Be a Member</a>
                         </li>
                     </ul>
                     <div class="form-inline my-2 my-lg-0">
@@ -30,8 +35,11 @@
                                     {{user?.userName | uppercase }}</a>
                             </li>
                             <li class="nav-item">
-                                <img [src]="user?.profilePicture === '' ? './assets/images/profile.png' : user?.profilePicture"
-                                    class="user-profile-pic" />
+                                <a class="nav-link" [routerLink]="'/profile'" (click)="userClicked($event)">
+                                    <img [src]="user?.profilePicture === '' ? './assets/images/profile.png' : user?.profilePicture"
+                                        class="user-profile-pic" />
+                                </a>
+
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#" (click)="logout($event)">Logout</a>

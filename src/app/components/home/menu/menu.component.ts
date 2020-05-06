@@ -47,6 +47,10 @@ export class MenuComponent implements OnInit, OnChanges {
       console.log(res);
     }, err => { });
   }
+
+  beMember(e) {
+
+  }
 }
 
 export interface IUser {

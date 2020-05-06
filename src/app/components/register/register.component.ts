@@ -20,6 +20,10 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   returnUrl: string;
   @ViewChild('input') input: ElementRef;
   userExists = false;
+  genderList = [
+    { text: 'Male', value: 'm' },
+    { text: 'Female', value: 'f' },
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,6 +42,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required],
+      gender: ['', Validators.required],
       phone: ['', Validators.required],
       password: ['', Validators.required],
       repeatPassword: ['', Validators.required]
