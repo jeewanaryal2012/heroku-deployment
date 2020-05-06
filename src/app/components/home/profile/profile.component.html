@@ -1,1 +1,26 @@
-<p>profile works!</p>
+<div class="login-form-wrapper container container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Register</h2>
+            <form [formGroup]="profileForm" class="login-form">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="upload-btn-wrapper">
+                            <button class="btn-upload"> <i class="fas fa-paperclip"></i> Attach file</button>
+                            <input type="file" name="image" ng2FileSelect [uploader]="uploader"
+                                (onFileSelected)="onFileSelected($event)" multiple
+                                accept="image/x-png,image/gif,image/jpeg" />
+                        </div>
+                        <!-- <input type="file" name="image" ng2FileSelect [uploader]="uploader"
+                            (onFileSelected)="onFileSelected($event)" multiple
+                            accept="image/x-png,image/gif,image/jpeg" /> <i class="fas fa-paperclip"></i> -->
+                        <button type="button" class="btn btn-primary col-md-12 mt-3" (click)="uploader.uploadAll()"
+                            [disabled]="!uploader.getNotUploadedItems().length">
+                            Upload
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
