@@ -8,6 +8,7 @@ import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 import { AuthenticationService } from '../../../_services/authentication.service';
 import { RegisterService } from '../../../_services/register.service';
 import { FileUploader, FileItem, ParsedResponseHeaders } from 'ng2-file-upload';
+import { UserProfileService } from '../../../_services/user-profile.service';
 
 const URL = 'http://localhost:4040/uploads';
 
@@ -20,23 +21,27 @@ export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   uploader: FileUploader;
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private userProfileService: UserProfileService,
+    private authenticationService: AuthenticationService
   ) {
-    this.uploader = new FileUploader({
-      url: URL,
-      itemAlias: 'image'
-    });
   }
 
   ngOnInit(): void {
+    console.log(this.authenticationService.currentUserValue);
     this.initForm();
+    this.uploader = this.userProfileService.initUpload();
+    this.uploader.setOptions({
+      additionalParameter: {
+        email: this.authenticationService.currentUserValue.userName
+      }
+    });
   }
 
   initForm() {
     this.profileForm = this.formBuilder.group({
 
     });
-    this.initUpload();
   }
 
   initUpload() {
