@@ -20,11 +20,7 @@ export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   uploader: FileUploader;
   constructor(
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private authenticationService: AuthenticationService,
-    private registerService: RegisterService
+    private formBuilder: FormBuilder
   ) {
     this.uploader = new FileUploader({
       url: URL,
@@ -38,14 +34,18 @@ export class ProfileComponent implements OnInit {
 
   initForm() {
     this.profileForm = this.formBuilder.group({
-      headLine: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      gender: ['', Validators.required],
-      phone: ['', Validators.required],
-      password: ['', Validators.required],
-      repeatPassword: ['', Validators.required]
+
     });
+    this.initUpload();
+  }
+
+  initUpload() {
+    this.uploader.onAfterAddingFile = (file) => {
+      file.withCredentials = false;
+    };
+    this.uploader.onCompleteItem = (item: any, status: any) => {
+      console.log('Uploaded File Details:', item);
+    };
   }
 
   onFileSelected(e) {
