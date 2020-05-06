@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../../_services/authentication.service';
 import { BaseService } from '../../../_services/base.service';
@@ -8,20 +8,25 @@ import { BaseService } from '../../../_services/base.service';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent implements OnInit {
-  user: IUser = {
-    firstName: '',
-    lastName: '',
-    userName: '',
-    email: ''
-  };
+export class MenuComponent implements OnInit, OnChanges {
+  @Input() user: any;
+  // user: IUser = {
+  //   firstName: '',
+  //   lastName: '',
+  //   userName: '',
+  //   email: ''
+  // };
   loggingOut = false;
   constructor(private route: ActivatedRoute, private router: Router, private authenticationService: AuthenticationService
     , private baseService: BaseService) { }
 
   ngOnInit(): void {
     console.log(this.authenticationService.currentUserValue);
-    this.user.userName = this.authenticationService.currentUserValue.userName;
+    //this.user.userName = this.authenticationService.currentUserValue.userName;
+  }
+
+  ngOnChanges() {
+    console.log(this.user);
   }
 
   userClicked(e) {

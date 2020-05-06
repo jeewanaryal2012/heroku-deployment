@@ -3,11 +3,21 @@
 .nav-wrapper {
   .navbar {
     background-color: $navBackground;
+    ul {
+      li {
+        .user-profile-pic {
+          width: 32px;
+          height: 32px;
+          border-radius: 100%;
+        }
+      }
+    }
     a {
       color: $textWhite;
     }
     a.active {
       color: green;
     }
+    
   }
 }

@@ -13,6 +13,8 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { MenuComponent } from './menu/menu.component';
 import { OverlayComponent } from './overlay/overlay.component';
 
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -28,7 +30,8 @@ import { OverlayComponent } from './overlay/overlay.component';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    FileUploadModule
+    FileUploadModule,
+    MatCheckboxModule
   ]
 })
 export class HomeModule { }
