@@ -21,6 +21,9 @@ export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   uploader: FileUploader;
   successResponse = '';
+  user = {
+    profilePicture: ''
+  };
   constructor(
     private formBuilder: FormBuilder,
     private userProfileService: UserProfileService,
@@ -32,6 +35,9 @@ export class ProfileComponent implements OnInit {
     console.log(this.authenticationService.currentUserValue);
     this.initForm();
     this.uploader = this.userProfileService.initUpload();
+    this.userProfileService.getUserProfile(this.authenticationService.currentUserValue.email).subscribe(res => {
+      this.user = res;
+    }, err => { });
     this.uploader.setOptions({
       additionalParameter: {
         email: this.authenticationService.currentUserValue.userName
@@ -41,6 +47,11 @@ export class ProfileComponent implements OnInit {
     //   console.log(response);
     //   this.successResponse = 'test';
     // };
+    this.userProfileService.getUploadResponse().subscribe(res => {
+      console.log(JSON.parse(res));
+      const imgUrl = JSON.parse(res);
+      this.user.profilePicture = imgUrl.profilePicture;
+    }, err => { });
   }
 
   initForm() {

@@ -5,6 +5,10 @@
             <form [formGroup]="profileForm" class="login-form">
                 <div class="form-group">
                     <div class="col-md-12">
+                        <div>
+                            <img [src]="user?.profilePicture === '' ? './assets/images/profile.png' : user?.profilePicture"
+                                class="user-profile-pic" />
+                        </div>
                         <div class="upload-btn-wrapper">
                             <!-- <button class="btn-upload"> <i class="fas fa-paperclip"></i> Attach file</button> -->
                             <input type="file" name="image" ng2FileSelect [uploader]="uploader"
