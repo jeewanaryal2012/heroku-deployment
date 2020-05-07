@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../_models/user';
 import { FileUploader, FileItem, ParsedResponseHeaders } from 'ng2-file-upload';
@@ -11,6 +11,9 @@ import { AuthenticationService } from './authentication.service';
 export class UserProfileService {
   uploader: FileUploader;
   url = 'http://localhost:4040/user-profile-picture';
+  uploadResponse = '';
+  private myMessage = new Subject<string>();
+
   constructor(private http: HttpClient, private authenticationService: AuthenticationService) {
     this.uploader = new FileUploader({
       url: this.url,
@@ -27,7 +30,13 @@ export class UserProfileService {
       console.log('Uploaded File Details:', item);
     };
     this.uploader.onSuccessItem = (item, response, status, headers) => {
-      console.log(response);
+      //console.log(response);
+      //this.authenticationService.setCurrentUserValue(response);
+      // let jwt = JSON.parse(localStorage.getItem('jwt'));
+      // jwt['profilePicture'] = '';
+      // localStorage.setItem('jwt', JSON.stringify(jwt));
+      console.log('uploaded');
+      this.myMessage.next(response);
     };
   }
 
@@ -37,5 +46,9 @@ export class UserProfileService {
 
   getUserProfile(email): Observable<any> {
     return this.http.post<any>('http://localhost:4040/user-profile', { email });
+  }
+
+  getUploadResponse() {
+    return this.myMessage.asObservable();
   }
 }

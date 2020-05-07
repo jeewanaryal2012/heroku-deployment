@@ -18,15 +18,16 @@ export class AuthenticationService {
   }
 
   public get currentUserValue() {
-    console.log(this.currentUserSubject.value);
     return this.currentUserSubject.value;
+  }
+  public setCurrentUserValue(user) {
+    this.currentUserSubject.next(user);
   }
 
   login(email: string, password: string) {
     return this.http.post<any>(`http://localhost:4040/login`, { email, password })
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
-        console.log(user);
         if (user && user.accessToken) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           // localStorage.setItem('currentUser', JSON.stringify(user));

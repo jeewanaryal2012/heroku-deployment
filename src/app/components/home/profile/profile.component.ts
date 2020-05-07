@@ -20,6 +20,7 @@ const URL = 'http://localhost:4040/uploads';
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   uploader: FileUploader;
+  successResponse = '';
   constructor(
     private formBuilder: FormBuilder,
     private userProfileService: UserProfileService,
@@ -36,6 +37,10 @@ export class ProfileComponent implements OnInit {
         email: this.authenticationService.currentUserValue.userName
       }
     });
+    // this.uploader.onSuccessItem = (item, response, status, headers) => {
+    //   console.log(response);
+    //   this.successResponse = 'test';
+    // };
   }
 
   initForm() {

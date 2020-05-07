@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../../_services/authentication.service';
 import { BaseService } from '../../../_services/base.service';
+import { UserProfileService } from '../../../_services/user-profile.service';
 
 @Component({
   selector: 'app-menu',
@@ -18,15 +19,21 @@ export class MenuComponent implements OnInit, OnChanges {
   // };
   loggingOut = false;
   constructor(private route: ActivatedRoute, private router: Router, private authenticationService: AuthenticationService
-    , private baseService: BaseService) { }
+    , private baseService: BaseService, private userProfileService: UserProfileService) { }
 
   ngOnInit(): void {
-    console.log(this.authenticationService.currentUserValue);
+    console.log(this.user);
     //this.user.userName = this.authenticationService.currentUserValue.userName;
+    this.userProfileService.getUploadResponse().subscribe(res => {
+      console.log(JSON.parse(res));
+      const imgUrl = JSON.parse(res);
+      this.user.profilePicture = imgUrl.profilePicture;
+    }, err => { });
   }
 
   ngOnChanges() {
     console.log(this.user);
+    console.log(this.userProfileService.getUploadResponse());
   }
 
   userClicked(e) {
