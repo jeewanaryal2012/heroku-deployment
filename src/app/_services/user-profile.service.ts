@@ -15,7 +15,8 @@ export class UserProfileService {
     this.uploader = new FileUploader({
       url: this.url,
       headers: [
-        { name: 'authorization', value: this.authenticationService.currentUserValue.accessToken }
+        { name: 'authorization', value: this.authenticationService.currentUserValue.accessToken },
+        { name: 'email', value: this.authenticationService.currentUserValue.email }
       ],
       itemAlias: 'image'
     });

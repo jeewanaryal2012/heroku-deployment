@@ -39,6 +39,7 @@ export class MenuComponent implements OnInit, OnChanges {
     setTimeout(() => {
       this.router.navigate(['/login']);
       this.loggingOut = false;
+      location.reload();
     }, 2000);
   }
 
