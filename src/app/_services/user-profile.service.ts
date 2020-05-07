@@ -26,6 +26,9 @@ export class UserProfileService {
     this.uploader.onCompleteItem = (item: any, status: any) => {
       console.log('Uploaded File Details:', item);
     };
+    this.uploader.onSuccessItem = (item, response, status, headers) => {
+      console.log(response);
+    };
   }
 
   initUpload() {
