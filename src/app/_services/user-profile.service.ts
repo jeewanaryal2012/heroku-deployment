@@ -48,6 +48,10 @@ export class UserProfileService {
     return this.http.post<any>('http://localhost:4040/user-profile', { email });
   }
 
+  getAllUserProfile(email): Observable<any> {
+    return this.http.post<any>('http://localhost:4040/all-user-profile', { email });
+  }
+
   getUploadResponse() {
     return this.myMessage.asObservable();
   }

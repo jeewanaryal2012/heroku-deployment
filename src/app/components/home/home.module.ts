@@ -15,6 +15,7 @@ import { OverlayComponent } from './overlay/overlay.component';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ProfileComponent } from './profile/profile.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProfileComponent } from './profile/profile.component';
     CreateAdComponent,
     MenuComponent,
     OverlayComponent,
-    ProfileComponent
+    ProfileComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,44 @@
+<!-- <div>
+    <ul>
+        <li *ngFor="let u of users">
+            <span>{{u.firstName}}</span>
+        </li>
+    </ul>
+</div>
+
+<div class="cards">
+    <div class="card">ONE</div>
+    <div class="card">TWO</div>
+    <div class="card">THREE</div>
+    <div class="card">FOUR</div>
+    <div class="card">FIVE</div>
+    <div class="card">SIX</div>
+    <div class="card">SEVEN</div>
+    <div class="card">EIGHT</div>
+    <div class="card">NINE</div>
+    <div class="card">TEN</div>
+    <div class="card">ELEVEN</div>
+    <div class="card">TWELVE</div>
+</div> -->
+
+<div class="dashboard-wrapper container container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="cards">
+                <li class="card" *ngFor="let u of users">
+                    <img [src]="u.profilePicture" />
+                    <h2>{{u.firstName}} {{u.lastName}}</h2>
+                    <h4 *ngIf="u.gender === 'm'">Male</h4>
+                    <h4 *ngIf="u.gender === 'f'">Female</h4>
+                    <div>
+                        <span *ngIf="u.status === 'n'">
+                            <button>Send Request</button>
+                        </span>
+                        <span *ngIf="u.status === 'p'">Request Pending</span>
+                        <span *ngIf="u.status === 'f'">Friends</span>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </div>
+</div>

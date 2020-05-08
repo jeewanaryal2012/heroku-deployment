@@ -4,11 +4,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { CreateAdComponent } from '../../authorized/create-ad/create-ad.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent, // this is the component with the <router-outlet> in the template
     children: [
+      {
+        path: '', // child route path
+        component: DashboardComponent // child route component that the router renders
+      },
       {
         path: 'ad', // child route path
         component: CreateAdComponent // child route component that the router renders
