@@ -55,4 +55,8 @@ export class UserProfileService {
   getUploadResponse() {
     return this.myMessage.asObservable();
   }
+
+  sendFriendRequest(requester): Observable<any> {
+    return this.http.post<any>('http://localhost:4040/friend-request', { requester });
+  }
 }

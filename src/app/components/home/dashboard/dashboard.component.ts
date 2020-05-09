@@ -9,19 +9,27 @@ import { AuthenticationService } from '../../../_services/authentication.service
 })
 export class DashboardComponent implements OnInit {
   users: any;
+  currentUser = this.authenticationService.currentUserValue.email;
   constructor(private userProfileService: UserProfileService, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
-    const currentUser = this.authenticationService.currentUserValue.email;
-
-    this.userProfileService.getAllUserProfile(currentUser).subscribe(res => {
-      console.log(res);
-      this.users = res.message[0].list;
-    }, err => { });
+    this.fetchData();
   }
 
   sendFriendRequest(e, u) {
-    console.log(u);
+    const requester = u;
+    requester.currentUser = this.authenticationService.currentUserValue.email;
+    this.userProfileService.sendFriendRequest(requester).subscribe(res => {
+      this.fetchData();
+    }, err => { });
+  }
+
+  fetchData() {
+    this.currentUser = this.authenticationService.currentUserValue.email;
+    this.userProfileService.getAllUserProfile(this.currentUser).subscribe(res => {
+      console.log(res);
+      this.users = res.message[0].list;
+    }, err => { });
   }
 
 }
