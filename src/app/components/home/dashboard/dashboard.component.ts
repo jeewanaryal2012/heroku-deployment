@@ -16,8 +16,12 @@ export class DashboardComponent implements OnInit {
 
     this.userProfileService.getAllUserProfile(currentUser).subscribe(res => {
       console.log(res);
-      this.users = res.message;
+      this.users = res.message[0].list;
     }, err => { });
+  }
+
+  sendFriendRequest(e, u) {
+    console.log(u);
   }
 
 }

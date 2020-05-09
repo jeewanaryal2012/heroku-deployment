@@ -30,13 +30,14 @@
                     <h2>{{u.firstName}} {{u.lastName}}</h2>
                     <h4 *ngIf="u.gender === 'm'">Male</h4>
                     <h4 *ngIf="u.gender === 'f'">Female</h4>
-                    <!-- <div>
-                        <span *ngIf="u.status[0] === 'n'">
-                            <button class="btn btn-link" style="color: #ffffff;">Send Request</button>
+                    <div>
+                        <span *ngIf="u.status === 'na'">
+                            <button class="btn btn-link" style="color: #ffffff;"
+                                (click)="sendFriendRequest($event, u)">Send Request</button>
                         </span>
-                        <span *ngIf="u.status[0] === 'p'">Request Pending</span>
-                        <span *ngIf="u.status[0] === 'f'">Friends</span>
-                    </div> -->
+                        <span *ngIf="u.status === 'p'">Request Pending</span>
+                        <span *ngIf="u.status === 'f'">Friends</span>
+                    </div>
                 </li>
             </div>
         </div>
